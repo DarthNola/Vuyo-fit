@@ -1,6 +1,6 @@
 import React ,{useState}from 'react'
 import SectionWrapper from './SectionWrapper'
-import { SCHEMES, WORKOUTS } from '../utilis/workout'
+import { SCHEMES, WORKOUTS } from '../utils/workout'
 import Button from './Button'
 
 function Header(props) {
@@ -16,11 +16,10 @@ function Header(props) {
     )
 }
 
-export default function Generator() {
+export default function Generator(props) {
+    const { muscles, setMuscles, poison, setPoison, goal, setGoal, updateWorkout } = props
     const [showModal , setShowModal] =useState(false)
-    const [poison , setPoison] =useState('individual')
-    const [muscles , setMuscles] =useState([])
-    const [goal ,setGoal] =useState('strength_power')
+    
     function toggleModal(){
         setShowModal(!showModal)
     }
@@ -48,7 +47,7 @@ export default function Generator() {
     }
 
   return (
-        <SectionWrapper header={"generate your workout"} title={['It\'s','Huge', 'o\'clock']}>
+        <SectionWrapper id={'generate'} header={"generate your workout"} title={['It\'s','Huge', 'o\'clock']}>
             <Header index={'01'} title={'Pick your poison'}
              description={'Select the workout  you wish to endure.'}/>
              <div className='grid grid-cols-2 sm:grid-cols-4 gap-4'>
@@ -57,7 +56,7 @@ export default function Generator() {
                         <button onClick={()=>{
                             setMuscles([])
                             setPoison(type)
-                        }} className={`bg-slate-950 border duration-200 hover:border-blue-600 py-3 rounded-lg ${type === poison ? 'border-blue-600' : 'border-blue-400'}`}
+                        }} className={`bg-slate-950 border duration-200 px-4  hover:border-blue-600 py-3 rounded-lg ${type === poison ? 'border-blue-600' : 'border-blue-400'}`}
                         key={typeIndex}>
                             <p className='capitalize'>{type.replaceAll('_'," ")}</p>
                         </button>
@@ -92,14 +91,14 @@ export default function Generator() {
                     return (
                         <button onClick={()=>{
                             setGoal(scheme)
-                        }} className={`bg-slate-950 border duration-200 hover:border-blue-600 py-3 rounded-lg ${scheme === goal ? 'border-blue-600' : 'border-blue-400'}`}
+                        }} className={`bg-slate-950 border duration-200 hover:border-blue-600 py-3 rounded-lg px-4  ${scheme === goal ? 'border-blue-600' : 'border-blue-400'}`}
                         key={schemeIndex}>
                             <p className='capitalize'>{scheme.replaceAll('_'," ")}</p>
                         </button>
                     )
                 })}
              </div>
-             <Button text={"Formulate"}></Button>
+             <Button func={updateWorkout} text={"Formulate"}></Button>
         </SectionWrapper>
   )
 }
