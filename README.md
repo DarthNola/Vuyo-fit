@@ -1,5 +1,5 @@
 # Vuyo Fit Gym Web Application
-Introduction
+### Introduction
 Welcome to the Vuyo Fit Gym Web Application project! This project is designed to help you learn React.js by building a comprehensive gym web application. Throughout this project, you will gain hands-on experience with essential React concepts such as JSX, props, hooks, state, components, and responsive web design. Additionally, we will style the application using TailwindCSS and deploy it on Netlify.
 
 ### Features
